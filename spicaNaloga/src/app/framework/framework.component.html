@@ -1,0 +1,27 @@
+<!-- Navbar -->
+<div class="myNavbar">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-light">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu"
+            aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars hamburger"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+            <ul class="navbar-nav text-left nav-ul">
+                <li>
+                    <a class="nav-link navbar-hover" routerLink="users" routerLinkActive="active-link"><i class="fa-solid fa-users"></i>
+                        Users</a>
+                </li>
+                <li>
+                    <a class="nav-link navbar-hover" routerLink="absences" routerLinkActive="active-link"><i class="fa-solid fa-user-clock"></i>
+                        Absences</a>
+                </li>
+                <li>
+                    <a class="nav-link navbar-hover" routerLink="settings" routerLinkActive="active-link"><i class="fa-solid fa-gears"></i>
+                        Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<router-outlet></router-outlet>

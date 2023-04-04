@@ -1,0 +1,36 @@
+# Compiled output
+/dist
+/tmp
+
+# Dependencies
+/node_modules
+
+# Debug logs and databases
+*.log
+*.sqlite
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Angular configuration files
+.angular-cli.json
+.angular.json
+.karma.conf.js
+.protractor.conf.js
+
+# NgRx files
+.ngrx/store-devtools
+
+# Other build files
+/coverage
+/docs
+/coverage-final.json
+/yarn-error.log
