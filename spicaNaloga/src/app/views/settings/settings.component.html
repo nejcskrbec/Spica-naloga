@@ -1,0 +1,43 @@
+<div id="main-container" class="d-flex justify-content-center align-items-center">
+    
+        <div class="card shadow-light">
+            <div class="myform">
+
+                <div class="authorization" *ngIf="!authorized">
+                  <h1 class="text-center">Authorization</h1>
+                  <form>
+                    <div class="mb-5 mt-5">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1" class="form-label"><b>Client ID</b></label>
+                        <input type="{{ showCredentials ? 'text' : 'password' }}" class="form-control" [formControl]="clientIdForm" name="clientId">
+                      </div>
+                    </div>
+                    <div class="mb-5">
+                      <label for="exampleInputPassword1" class="form-label"><b>Client secret</b></label>
+                      <input type="{{ showCredentials ? 'text' : 'password' }}" class="form-control" [formControl]="clientSecretForm" name="clientSecret">
+                    </div>
+                    <div class="mb-5">
+                      <input type="checkbox" class="form-check-input" id="show-credentials" [(ngModel)]="showCredentials" name="showCredentials">
+                      <label class="form-check-label" for="show-credentials"> Show credentials</label>
+                    </div>
+                    <button id="login-button" class="btn btn-light custom-button" (click)="doAuthorize()"><i class="fa-solid fa-lock"></i> Authorize</button>
+                  </form>                
+                </div>
+
+                <div class="authorized" *ngIf="authorized">
+                  <div class="mb-5">
+                    <div class="row">
+                      <div class="col-12 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-circle-check check"></i>
+                        <h1>Success!</h1>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button id="login-button" class="btn btn-light custom-button" routerLink="/users"><i class="fa-sharp fa-solid fa-shield-check"></i> View users</button>
+                </div>
+                
+              </div>
+        </div>
+
+</div>

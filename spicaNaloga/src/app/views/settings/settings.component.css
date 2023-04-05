@@ -1,0 +1,55 @@
+.card {
+    width: 90%;
+    max-width: 500px;
+}
+
+.myform {
+    padding: 2em;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    color: var(--dark);
+    text-align: cen;
+}
+
+@media (max-width: 576px) {
+    .myform {
+        background-color: inherit;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.form-control:focus {
+    background-color: inherit;
+    box-shadow: none;
+    border-bottom: 1px solid var(--green1);
+}
+
+.form-control {
+    background-color: inherit;
+    padding-left: 0;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--grey);
+}
+
+.form-check-input {
+    margin-right: 10px; /* set margin between checkbox and label */
+}
+
+.form-label {
+    margin: 0 !important;
+}
+
+.myform .btn {
+    width: 100%;
+    font-weight: 800;
+    padding: 0.5em 0;
+}
+
+.check {
+    font-size: 4em;
+    margin-right: 0.4em;
+    color: var(--confirm);
+}
