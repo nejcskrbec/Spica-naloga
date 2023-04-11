@@ -1,0 +1,36 @@
+<div class="modal fade" id="ModalFormAddUser" tabindex="-1"
+  aria-labelledby="ModalFormAddUserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content card shadow-dark">
+      <div class="modal-body p-0">
+        <div class="myform">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#close" #closeButton></button>
+          <h1 class="text-center">Add a new user</h1>
+          <form>
+            <div class="mb-5 mt-5">
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label"><b>First name</b></label>
+                <input type="text" class="form-control" [formControl]="newUserFirstNameForm">
+              </div>
+            </div>
+            <div class="mb-5">
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label"><b>Last name</b></label>
+                <input type="text" class="form-control" [formControl]="newUserLastNameForm">
+              </div>
+            </div>
+            <div class="mb-5">
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>
+                <input type="email" class="form-control" [formControl]="newUserEmailForm">
+              </div>
+            </div>
+            <button id="login-button" class="btn btn-light custom-button" (click)="submit()"><i class="fa-solid fa-user-check"></i> Submit</button>
+          </form>   
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

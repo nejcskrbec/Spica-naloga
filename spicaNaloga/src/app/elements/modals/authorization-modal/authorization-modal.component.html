@@ -1,0 +1,23 @@
+<div class="modal fade" id="ModalFormAuthorize" tabindex="-1"
+  aria-labelledby="ModalFormAuthorizeLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content card shadow-dark">
+      <div class="modal-body">
+        <div class="myform">
+    
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center justify-content-center">
+                <i class="fa-regular fa-hourglass-end check"></i>
+                <h1>Token expired!</h1>
+              </div>
+            </div>
+          </div>
+  
+          <button class="btn btn-light custom-button" (click)="hideModal()"><i class="fa-sharp fa-solid fa-shield-check"></i> Enter credentials</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

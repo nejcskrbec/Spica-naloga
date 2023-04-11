@@ -1,0 +1,31 @@
+.myform {
+    padding: 2em !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    color: var(--dark);
+}
+
+@media (max-width: 576px) {
+    .myform {
+        background-color: inherit;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.form-check-input {
+    margin-right: 10px; /* set margin between checkbox and label */
+}
+
+.custom-button {
+    width: 100%;
+    font-weight: 800;
+    padding: 0.5em 0;
+}
+
+textarea {
+    resize: none;
+    border-radius: 8px;
+    border-color: var(--grey);
+}

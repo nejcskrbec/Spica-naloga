@@ -1,0 +1,82 @@
+<div class="modal fade" id="ModalFormEditUser" tabindex="-1"
+  aria-labelledby="ModalFormEditUserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content card shadow-dark">
+      <div class="modal-body p-0">
+          <div class="myform">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#close" #closeButton></button>
+          <h1 class="text-center">Add absence</h1>
+          <form>
+            <div class="row row-cols-sm-auto mt-5">
+                <div class="col-lg-4 col-sm-12 mb-5">
+                    <label for="dFrom" class="form-label mb-2"><b>Type</b></label>
+                    <div ngbDropdown>
+                        <button type="button" class="btn btn-outline-secondary dropdown-button" id="dropdownBasic1" ngbDropdownToggle>
+                            {{ selectedOption ? selectedOption.Name : 'Select type' }}
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem *ngFor="let option of options" (click)="selectOption(option)">{{ option.Name }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-5">
+                    <label for="dFrom" class="form-label mb-2"><b>From</b></label>
+                    <div class="input-group">
+                        <input
+                            class="form-control search-field"
+                            placeholder="yyyy-mm-dd"
+                            name="dpFrom"
+                            [(ngModel)]="modelFrom"
+                            (dateSelect)="onDateSelection($event, 'dFrom')"
+                            ngbDatepicker
+                            #dFrom="ngbDatepicker"
+                            [autoClose]="'outside'"
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3 search-button" (click)="dFrom.toggle()" type="button"></button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-5">
+                    <label for="dTo" class="form-label mb-2"><b>To</b></label>
+                    <div class="input-group">
+                        <input
+                            class="form-control search-field"
+                            placeholder="yyyy-mm-dd"
+                            name="dpTo"
+                            [(ngModel)]="modelTo"
+                            (dateSelect)="onDateSelection($event, 'dTo')"
+                            ngbDatepicker
+                            #dTo="ngbDatepicker"
+                            [autoClose]="'outside'"
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3 search-button" (click)="dTo.toggle()" type="button"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                  <label for="description" class="form-label"><b>Comment</b></label>
+                  <textarea class="form-control" id="description" rows="3" maxLength="100" [formControl]="commentForm"></textarea>
+                  <div class="text-end">
+                    <small class="text-muted"><span>{{ charCount }}</span>/100 characters</small>
+                  </div>
+                </div>
+              </div>
+                      
+            <div class="row row-cols-sm-auto mb-5">
+                <div class="col-12 mb-2">
+                    <input type="checkbox" class="form-check-input" id="is-partial" [(ngModel)]="isPartial" name="isPartial">
+                    <label class="form-check-label" for="is-partial"> Is partial</label>
+                </div>
+                <div class="col-12">
+                    <input type="checkbox" class="form-check-input" id="overrides-holiday" [(ngModel)]="overridesHolidayAbsence" name="overridesHolidayAbsence">
+                    <label class="form-check-label" for="overrides-holiday"> Overrides holiday absence</label>
+                </div>
+            </div>
+            <button id="login-button" class="btn btn-light custom-button" (click)="submit()"><i class="fa-regular fa-calendar-check"></i> Submit</button>
+          </form>   
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

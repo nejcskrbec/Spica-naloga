@@ -1,0 +1,30 @@
+
+.remove-button {
+    color: var(--white) !important;
+    background-color: var(--green3) !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.timeslot {
+    width: auto;
+    padding: 12px ;
+    border-radius: 12px ;
+    border-color: var(--grey);
+    border-style: solid;
+    border-width: 1px;
+    background-color: var(--white);
+    vertical-align: middle;
+}
+
+h5 {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.fa-regular {
+    margin-right: 4px !important;
+}

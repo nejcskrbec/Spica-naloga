@@ -13,8 +13,10 @@
                       </div>
                     </div>
                     <div class="mb-5">
-                      <label for="exampleInputPassword1" class="form-label"><b>Client secret</b></label>
-                      <input type="{{ showCredentials ? 'text' : 'password' }}" class="form-control" [formControl]="clientSecretForm" name="clientSecret">
+                      <div class="form-group">
+                        <label for="exampleInputPassword1" class="form-label"><b>Client secret</b></label>
+                        <input type="{{ showCredentials ? 'text' : 'password' }}" class="form-control" [formControl]="clientSecretForm" name="clientSecret">
+                      </div>
                     </div>
                     <div class="mb-5">
                       <input type="checkbox" class="form-check-input" id="show-credentials" [(ngModel)]="showCredentials" name="showCredentials">

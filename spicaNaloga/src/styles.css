@@ -22,9 +22,15 @@ body {
     height: 100vh;
 }
 
+.bg-primary {
+    background-color: var(--green3) !important;
+}
+
 /* Custom colors */
 :root {
-    --green1:#08313A;
+    --green1:#1e453e;
+    --green2:#306844;
+    --green3: #455b55;
     --decline: #841919;
     --confirm: #3a8848;
     --white: #ffffff;
@@ -98,7 +104,17 @@ nav button {
     border-color: var(--grey);
     border-width: 1px;
     border-radius: 1.5rem;
-    background-color: white;
+    text-align: left;
+    transition: transform .1s;
+    flex: 0 0 auto;
+    overflow: hidden;
+}
+
+.card-table {
+    background-color: var(--white);
+    border-color: var(--grey);
+    border-width: 1px;
+    border-radius: 1.5rem;
     text-align: left;
     transition: transform .1s;
     flex: 0 0 auto;
@@ -108,3 +124,112 @@ nav button {
 .card-body {
     padding: 16px;
 }
+
+/* Pagination */
+.pagination .page-link {
+    border-color: var(--grey);
+    color: var(--green1);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--green1);
+    border-color:  var(--green1);
+    color: var(--white);
+}
+
+.edit-button {
+    border-radius: 8px;
+    border-color: var(--grey) !important;
+    color: var(--green1) !important;
+}
+
+.edit-button:hover {
+    background-color: var(--green3) !important;
+    border-color: var(--green3) !important;
+    color: var(--white) !important;
+}
+
+/* Search  */
+.title-row h1 {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
+.search-field {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.search-button {
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-color: var(--green3) !important;
+    color: var(--green1) !important;
+}
+
+.search-button:hover {
+    background-color: var(--green3) !important;
+    color: var(--white) !important;
+}
+
+.search-field {
+    border-top-left-radius: 8;
+    border-bottom-left-radius: 8;
+    border-color: var(--grey);
+    height: 38px;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    border-color: var(--grey) !important;
+}
+
+.dropdown-item:active {
+    background-color: var(--green3) !important;
+}
+
+.dropdown-button {
+    border-radius: 8px;
+    width: 100%;
+    border-color: var(--grey) !important;
+    color: var(--green1) !important;
+}
+
+.dropdown-button:hover {
+    background-color: var(--green3) !important;
+    border-color: var(--green3) !important;
+    color: var(--white) !important;
+}
+
+/* Datepicker */
+ngb-datepicker {
+    border-radius: 8px !important;
+    border-color: var(--grey) !important;
+}
+
+.ngb-dp-header {
+    border-top-right-radius: 8px !important;
+    border-top-left-radius: 8px !important;
+}
+
+.ngb-dp-navigation-chevron {
+    color: var(--green3) !important;
+}
+
+.ngb-dp-navigation-chevron:hover {
+    color: var(--green1) !important;
+}
+
+.ngb-dp-weekday {
+    font-style: normal !important;
+    color: var(--green3) !important;
+}
+
+.dp-hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+

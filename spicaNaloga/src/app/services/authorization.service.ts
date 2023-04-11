@@ -51,12 +51,29 @@ export class AuthorizationService {
     );
   }
 
-  public getToken(): AuthResponse | null {
+  public getToken(): any {
     const token = this.storage.getItem("authorization-token");
-    return token ? JSON.parse(token) : null;
+    if (token) {
+      const parsedToken = JSON.parse(token, (key, value) => {
+        if (key === "expires_in") {
+          return new Date(value);
+        }
+        return value;
+      });
+      return parsedToken;
+    }
+    return null;
   }
   
   public saveToken(token: AuthResponse): void {
-    this.storage.setItem("authorization-token", JSON.stringify(token));
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 1);
+    const newToken = {
+      access_token: token.access_token,
+      expires_in: expiresAt,
+    };
+    console.log(newToken.expires_in)
+    this.storage.setItem("authorization-token", JSON.stringify(newToken));
   }
+  
 }
