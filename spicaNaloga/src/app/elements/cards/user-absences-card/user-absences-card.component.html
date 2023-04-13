@@ -34,7 +34,7 @@
                 <p class="m-0">No comment</p> 
             </div>
             <div *ngIf="comment !== '' && comment != null">
-                <p class="m-0"><i class="fa-solid fa-comment"></i> {{ comment }}</p> 
+                <p class="m-0"><i class="fa-solid fa-comment"></i> {{ comment.length > 25 ? comment.slice(0, 25) + '...' : comment }}</p> 
             </div>
         </div>  
         

@@ -60,6 +60,13 @@ export class SettingsComponent {
     }
   }
 
+  clear(): void {
+    this.clientIdForm.reset();
+    this.clientId = '';
+    this.clientSecretForm.reset();
+    this.clientSecret = '';
+  }
+
   private readonly viewportChange = this.viewportRuler
   .change(200)
   .subscribe(() => this.ngZone.run(() => this.resize()));
@@ -70,13 +77,14 @@ export class SettingsComponent {
       .authorize(myCredentials)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          this.clear();
+          alert("There was an error!")
           return throwError(() => error);
         })
       )
       .subscribe(() => {
-        console.log('Authorization successful!')
+        this.clear();
         this.authorized = true;
-        console.log(this.authorizationService.getToken());
       });
   }
 }

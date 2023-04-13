@@ -41,8 +41,10 @@ export class EditUserModalComponent {
     public formatter: NgbDateParserFormatter) {
 
     this.commentForm.valueChanges.subscribe((comment) => {
-      this.comment = comment;
-      this.charCount = this.comment.length;
+      if (comment != null) {
+        this.comment = comment;
+        this.charCount = this.comment.length;
+      }
     });
 
     this.subscription = editUserService.getEditEvent().subscribe((data: any) => {
@@ -151,6 +153,7 @@ export class EditUserModalComponent {
         OverrideHolidayAbsence: this.overridesHolidayAbsence
   
       };
+      console.log(newAbsence);
       this.usersService
       .postAbsence(newAbsence)
       .pipe(
