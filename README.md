@@ -15,7 +15,7 @@ Uspešno namestitev Angular CLI lahko preverite z ukazom:
 
 #### Kloniranje git repozitorija in zagon aplikacije
 Ko ste uspešno namestili Angular CLI, se premaknite v direktorij, kjer želite imeti shranjeno aplikacijo, ter klonirajte njen repozitorij z ukazom:
-`https://github.com/nejcskrbec/Spica-naloga.git`
+`git clone https://github.com/nejcskrbec/Spica-naloga.git`
 
 Nato pa se premaknite v mapo z aplikacijo z ukazoma:
 `cd Spica-naloga` in `cd spicaNaloga`
