@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-between align-items-center shadow-light timeslot p-3">
+    <div class="row">
+        <div class="col-12 user-data mb-3">
+            <p class="m-0 pb-3"><i class="fa-solid fa-user"></i> <b>{{ firstName }} {{ lastName }}</b></p>
+        </div>  
+        <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <p class="m-0"><i class="fa-solid fa-tags"></i> {{ absenceDefinitionName }}</p> 
+            </div>
+        </div>  
+        <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <p class="m-0"><i class="fa-solid fa-clock"></i> {{ partialTimeFrom | isoToDate }} - {{ partialTimeTo | isoToDate }}</p> 
+            </div>
+        </div>  
+        <div class="col-12 d-flex mb-3">
+            <div *ngIf="isPartial">
+                <p class="m-0"><i class="fa-solid fa-check"></i> Partial</p> 
+            </div>
+            <div *ngIf="!isPartial">
+                <p class="m-0"><i class="fa-solid fa-xmark"></i> Partial</p> 
+            </div>
+        </div>  
+        <div class="col-12 d-flex mb-3">
+            <div *ngIf="overrideHolidayAbsence">
+                <p class="m-0"><i class="fa-solid fa-check"></i> Overrides holiday absence</p> 
+            </div>
+            <div *ngIf="!overrideHolidayAbsence">
+                <p class="m-0"><i class="fa-solid fa-xmark"></i> Overrides holiday absence</p> 
+            </div>
+        </div>  
+        <div class="col-12 d-flex">
+            <div *ngIf="comment === '' || comment == null">
+                <p class="m-0">No comment</p> 
+            </div>
+            <div *ngIf="comment !== '' && comment != null">
+                <p class="m-0"><i class="fa-solid fa-comment"></i> {{ comment }}</p> 
+            </div>
+        </div>  
+        
+    </div>
+</div>

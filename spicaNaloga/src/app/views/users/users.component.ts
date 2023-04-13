@@ -1,19 +1,20 @@
 import { Component, Inject, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { HttpErrorResponse } from "@angular/common/http";
 import { throwError, catchError } from "rxjs";
 import { FormControl } from '@angular/forms';
 
 import { AuthorizationService } from 'src/app/services/authorization.service';
 import { UsersService } from 'src/app/services/users.service';
+import { NavbarSizeService } from 'src/app/services/navbar-size.service';
 
 import { UserCardComponent } from 'src/app/elements/cards/user-card/user-card.component';
 import { AuthorizationModalComponent } from 'src/app/elements/modals/authorization-modal/authorization-modal.component';
 import { AddUserModalComponent } from 'src/app/elements/modals/add-user-modal/add-user-modal.component';
 
 interface User {
-  Id: number;
+  Id: string;
   FirstName: string;
   LastName: string;
   Email: string;
@@ -28,7 +29,8 @@ export class UsersComponent {
 
   public users: User[] = [];
   private allUsers: User[] = [];
-  public pageSize: number = 12;
+  public absenceDefinitions: any;
+  public pageSize: number = 9;
   public page: number = 1;
 
   searchTermForm = new FormControl();
@@ -44,7 +46,8 @@ export class UsersComponent {
     private readonly ngZone: NgZone,
     private readonly viewportRuler: ViewportRuler,
     private authorizationService: AuthorizationService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private navbarSizeService: NavbarSizeService,
   ) {
     this.searchTermForm.valueChanges.subscribe((searchTerm) => {
       this.searchTerm = searchTerm;
@@ -54,6 +57,7 @@ export class UsersComponent {
   ngAfterViewInit(): void {
     this.resize();
     this.fetchUsers();
+    this.fetchAbsenceDefinitions();
     this.usersObject = {
       authorizationService: this.authorizationService,
       authorizationModal: this.authorizationModal,
@@ -69,6 +73,10 @@ export class UsersComponent {
         return false;
       }
     }
+
+    this.navbarSizeService.getResizeEvent().subscribe(event => {
+      this.resize();
+    });
   }
 
   private readonly viewportChange = this.viewportRuler
@@ -80,7 +88,6 @@ export class UsersComponent {
     var mainContainer: any = document.querySelector("#main-container");
     var navbar: any = document.querySelector(".navbar");
     mainContainer.style.setProperty("margin-top", navbar.getBoundingClientRect().height + "px", "important");
-    mainContainer.style.setProperty("padding-top", navbar.getBoundingClientRect().height + "px", "important");
     mainContainer.style.setProperty("height", window.innerHeight - navbar.getBoundingClientRect().height + "px", "important");
   }
 
@@ -110,6 +117,23 @@ export class UsersComponent {
       });
     }
   }
+
+  fetchAbsenceDefinitions() {
+    if (this.checkAuthorization()) {
+      this.usersService
+      .getAbsenceDefinitions()
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      )
+      .subscribe((absences) => {
+        this.absenceDefinitions = absences;
+      });
+    }
+  }
+
+  
 
   searchUsers() {
     if (this.checkAuthorization()) {

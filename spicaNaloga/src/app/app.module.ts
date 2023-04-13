@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NgbModule, NgbDate, NgbCalendar, NgbDateParserFormatter, NgbDatepickerModule, NgbAlertModule, NgbDateStruct  } from '@ng-bootstrap/ng-bootstrap';
-import { JsonPipe } from '@angular/common';
+import { AngularResizeEventModule } from 'angular-resize-event';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +16,9 @@ import { AuthorizationModalComponent } from './elements/modals/authorization-mod
 import { AddUserModalComponent } from './elements/modals/add-user-modal/add-user-modal.component';
 import { EditAbsencesModalComponent } from './elements/modals/edit-absences-modal/edit-absences-modal.component';
 import { EditUserModalComponent } from './elements/modals/edit-user-modal/edit-user-modal.component';
+import { AbsencesUserCardComponent } from './absences-user-card/absences-user-card.component';
+import { UserAbsencesCardComponent } from './elements/cards/user-absences-card/user-absences-card.component';
+import { IsoToDatePipe } from './pipes/iso-to-date.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import { EditUserModalComponent } from './elements/modals/edit-user-modal/edit-u
     AuthorizationModalComponent,
     AddUserModalComponent,
     EditAbsencesModalComponent,
-    EditUserModalComponent
+    EditUserModalComponent,
+    AbsencesUserCardComponent,
+    UserAbsencesCardComponent,
+    IsoToDatePipe
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,9 @@ import { EditUserModalComponent } from './elements/modals/edit-user-modal/edit-u
     NgbModule,
     NgbDatepickerModule, 
     NgbAlertModule,
-    JsonPipe
+    JsonPipe,
+    AngularResizeEventModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [FrameworkComponent]

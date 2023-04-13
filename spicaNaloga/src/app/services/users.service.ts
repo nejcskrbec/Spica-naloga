@@ -58,8 +58,34 @@ export class UsersService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  public getAbsences(): Observable<any[]> {
+  public getAbsenceDefinitions(): Observable<any[]> {
     const url: string = `${this.apiUrl}/AbsenceDefinitions`;
+    const headers = new HttpHeaders({
+      'authorization': `Bearer ${this.authorizationService.getToken()?.access_token}`,
+      'content-type': 'application/json'
+    });
+    return this.http.get<any[]>(url, { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  public getAbsences(): Observable<any[]> {
+    const url: string = `${this.apiUrl}/Absences`;
+    const headers = new HttpHeaders({
+      'authorization': `Bearer ${this.authorizationService.getToken()?.access_token}`,
+      'content-type': 'application/json'
+    });
+    return this.http.get<any[]>(url, { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  public getAbsencesBySearch(params: any): Observable<any[]> {
+    const url: string = `${this.apiUrl}/Absences?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}`;
     const headers = new HttpHeaders({
       'authorization': `Bearer ${this.authorizationService.getToken()?.access_token}`,
       'content-type': 'application/json'

@@ -1,0 +1,9 @@
+h5 {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.fa-solid {
+    margin-right: 8px !important;
+    color: var(--green3) !important;
+}

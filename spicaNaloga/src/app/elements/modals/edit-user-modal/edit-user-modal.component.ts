@@ -45,20 +45,10 @@ export class EditUserModalComponent {
       this.charCount = this.comment.length;
     });
 
-    this.subscription = editUserService.getEditEvent().subscribe((id: any) => {
-      this.id = id;
-      this.usersService
-      .getAbsences()
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          return throwError(() => error);
-        })
-      )
-      .subscribe((absences) => {
-        console.log(absences)
-        this.options = absences;
-        this.showModal();
-      });
+    this.subscription = editUserService.getEditEvent().subscribe((data: any) => {
+      this.id = data.id;
+      this.options = data.absenceDefinitions;
+      this.showModal();
     });
   }
 
@@ -71,7 +61,6 @@ export class EditUserModalComponent {
   }
 
   selectOption(option: any) {
-    console.log(option)
     this.selectedOption = option;
   }
 
@@ -97,74 +86,72 @@ export class EditUserModalComponent {
     }
   }
   
+  equalDates(date1: NgbDateStruct, date2: NgbDateStruct): boolean {
+    return (date1.year == date2.year && date1.month == date2.month && date1.day == date2.day);
+  }
+  
 	onDateSelection(date: any, datepicker: any) {
-    console.log(datepicker)
     if (this.modelFrom != null && this.modelTo != null) {
       if(this.greaterDate(this.modelFrom, this.modelTo) == this.modelFrom) {
-        alert("The absence start date should not be greater than the end date!")
-        // if (datepicker == 'dFrom') {
-        //   this.modelFrom = null;
-        // }
-        // else if (datepicker = 'dTo') {
-        //   this.modelTo = null;
-        // }
+        if (this.equalDates(this.modelFrom, this.modelTo)) {
+          alert("Please select different start and end dates!")
+          if (datepicker == "dTo") {
+            this.modelFrom = null;
+          } else {
+            this.modelTo = null;
+          }
+        } else {
+          alert("The absence start date should not be greater than the end date!")
+          if (datepicker == "dTo") {
+            this.modelFrom = null;
+          } else {
+            this.modelTo = null;
+          }
+        }
       }
     }
 	}
-
-
-	// isInside(date: NgbDate) {
-	// 	return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
-	// }
-
-	// isRange(date: NgbDate) {
-	// 	return (
-	// 		date.equals(this.fromDate) ||
-	// 		(this.toDate && date.equals(this.toDate)) ||
-	// 		this.isInside(date) ||
-	// 	);
-	// }
-
-	// validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
-	// 	const parsed = this.formatter.parse(input);
-	// 	return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
-	// }
 
   DateToISOString(date: Date): string {
     return date.toISOString();
   }
 
   NgbDateStructToISOString(date: NgbDateStruct): string {
-    console.log(date)
     return (this.DateToISOString(new Date(Date.UTC(date.year, date.month - 1, date.day))));
   }
 
   submit(): void {
-    const newAbsence = {
-      UserId: this.id,
-      TimeStamp: this.DateToISOString(new Date()),
-      AbsenceDefinitionId: this.selectedOption.Id,
-      Origin: 0,
-      Comment: this.comment,
-      PartialTimeFrom: this.NgbDateStructToISOString(this.modelFrom),
-      PartialTimeTo: this.NgbDateStructToISOString(this.modelTo),
-      PartialTimeDuration: 0,
-      IsPartial: this.isPartial,
-      OverrideHolidayAbsence: this.overridesHolidayAbsence
-
-    };
-    console.log(newAbsence)
-    this.usersService
-    .postAbsence(newAbsence)
-    .pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
-    )
-    .subscribe((response) => {
-      console.log(response);
-      this.hideModal();
-    });
-}
+    if (this.modelFrom == undefined) {
+      alert('Please enter a start date!')
+    }
+    else if (this.modelTo == undefined) {
+      alert('Please enter an end date!')
+    } else {
+      const newAbsence = {
+        UserId: this.id,
+        TimeStamp: this.DateToISOString(new Date()),
+        AbsenceDefinitionId: this.selectedOption.Id,
+        Origin: 0,
+        Comment: this.comment,
+        PartialTimeFrom: this.NgbDateStructToISOString(this.modelFrom),
+        PartialTimeTo: this.NgbDateStructToISOString(this.modelTo),
+        PartialTimeDuration: 0,
+        IsPartial: this.isPartial,
+        OverrideHolidayAbsence: this.overridesHolidayAbsence
+  
+      };
+      this.usersService
+      .postAbsence(newAbsence)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      )
+      .subscribe((response) => {
+        console.log(response);
+        this.hideModal();
+      });
+    }
+  }
 }
 

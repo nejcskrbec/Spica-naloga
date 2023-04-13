@@ -1,3 +1,89 @@
-<div id="main-container">
-    <p>absences works!</p>
+<div id="main-container" class="pt-5">
+    <div class="container">
+
+      <div class="row title-row">
+
+        <div class="col-sm-12 col-md-12 col-lg-4 mb-5">
+          <div class="d-flex align-items-center justify-content-between">
+            <h1 class="mb-4 text-left">Absences</h1>
+          </div>
+        </div>
+      
+        <div class="col-sm-12 col-md-12 col-lg-8 d-flex align-items-center justify-content-end">
+            <div class="row row-cols-sm-auto justify-content-between">
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-5">
+                    <div class="input-group">
+                        <input
+                            class="form-control search-field"
+                            placeholder="From date"
+                            name="dpFrom"
+                            [(ngModel)]="modelFrom"
+                            (dateSelect)="onDateSelection($event, 'dFrom')"
+                            ngbDatepicker
+                            #dFrom="ngbDatepicker"
+                            [autoClose]="'outside'"
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3 search-button" (click)="dFrom.toggle()" type="button"></button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-5">
+                    <div class="input-group">
+                        <input
+                            class="form-control search-field"
+                            placeholder="To date"
+                            name="dpTo"
+                            [(ngModel)]="modelTo"
+                            (dateSelect)="onDateSelection($event, 'dTo')"
+                            ngbDatepicker
+                            #dTo="ngbDatepicker"
+                            [autoClose]="'outside'"
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3 search-button" (click)="dTo.toggle()" type="button"></button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 d-flex text-right mb-5">
+                    <div class="input-group align-items-center">
+                        <button class="btn btn-outline-secondary search-button-absences" type="button" (click)="searchAbsences()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+      
+
+      <div *ngIf="absences.length > 0; else noResultsMessage" class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col mb-1" *ngFor="let absence of absences | slice: (page-1) * pageSize : page * pageSize">
+          <app-user-absences-card
+            [id]="absence.Id"
+            [firstName]="absence.FirstName"
+            [lastName]="absence.LastName"
+            [absenceDefinitionName]="absence.AbsenceDefinitionName"
+            [partialTimeFrom]="absence.PartialTimeFrom"
+            [partialTimeTo]="absence.PartialTimeTo"
+            [isPartial]="absence.IsPartial"
+            [overrideHolidayAbsence]="absence.OverrideHolidayAbsence"
+            [comment]="absence.Comment"
+          ></app-user-absences-card>
+        </div>
+      </div>
+      
+      <ng-template #noResultsMessage>
+        <p>No results</p>
+      </ng-template>      
+      
+      <div class="d-flex justify-content-center mt-5 mb-5">
+        <ngb-pagination
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [maxSize]="5"
+          [collectionSize]="absences.length">
+        </ngb-pagination>
+      </div>
+      
+    </div>
+
+    <!-- Authrization modal -->
+    <app-authorization-modal></app-authorization-modal>
+    
 </div>

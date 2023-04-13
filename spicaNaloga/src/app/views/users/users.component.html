@@ -1,4 +1,4 @@
-<div id="main-container">
+<div id="main-container" class="pt-5">
     <div class="container">
 
       <div class="row title-row">
@@ -14,7 +14,7 @@
           <div class="input-group align-items-center">
             <input type="text" class="form-control search-field" placeholder="Search users..." [formControl]="searchTermForm">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary search-button" type="button" (click)="searchUsers()"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <button class="btn btn-outline-secondary search-button" type="button" (click)="searchUsers()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
       </div>
       
 
-      <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div *ngIf="users.length > 0; else noResultsMessage" class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
         <div class="col mb-1" *ngFor="let user of users | slice: (page-1) * pageSize : page * pageSize">
           <app-user-card
             [firstName]="user.FirstName"
@@ -30,11 +30,16 @@
             [id]="user.Id"
             [email]="user.Email"
             [usersObject]="usersObject"
+            [absenceDefinitions]="absenceDefinitions"
           ></app-user-card>
         </div>
       </div>
       
-      <div class="d-flex justify-content-center mt-5">
+      <ng-template #noResultsMessage>
+        <p>No results</p>
+      </ng-template>
+      
+      <div class="d-flex justify-content-center mt-5 mb-5">
         <ngb-pagination
           [(page)]="page"
           [pageSize]="pageSize"

@@ -9,7 +9,6 @@
           <form>
             <div class="row row-cols-sm-auto mt-5">
                 <div class="col-lg-4 col-sm-12 mb-5">
-                    <label for="dFrom" class="form-label mb-2"><b>Type</b></label>
                     <div ngbDropdown>
                         <button type="button" class="btn btn-outline-secondary dropdown-button" id="dropdownBasic1" ngbDropdownToggle>
                             {{ selectedOption ? selectedOption.Name : 'Select type' }}
@@ -20,11 +19,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 mb-5">
-                    <label for="dFrom" class="form-label mb-2"><b>From</b></label>
                     <div class="input-group">
                         <input
                             class="form-control search-field"
-                            placeholder="yyyy-mm-dd"
+                            placeholder="From date"
                             name="dpFrom"
                             [(ngModel)]="modelFrom"
                             (dateSelect)="onDateSelection($event, 'dFrom')"
@@ -36,11 +34,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 mb-5">
-                    <label for="dTo" class="form-label mb-2"><b>To</b></label>
                     <div class="input-group">
                         <input
                             class="form-control search-field"
-                            placeholder="yyyy-mm-dd"
+                            placeholder="To date"
                             name="dpTo"
                             [(ngModel)]="modelTo"
                             (dateSelect)="onDateSelection($event, 'dTo')"

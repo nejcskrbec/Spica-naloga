@@ -4,29 +4,22 @@ import { AuthorizationService } from 'src/app/services/authorization.service';
 import { EditUserService } from 'src/app/services/edit-user.service';
 
 @Component({
-  selector: 'app-user-card',
-  templateUrl: './user-card.component.html',
-  styleUrls: ['./user-card.component.css']
+  selector: 'app-user-absences-card',
+  templateUrl: './user-absences-card.component.html',
+  styleUrls: ['./user-absences-card.component.css']
 })
-export class UserCardComponent {
+export class UserAbsencesCardComponent {
   @Input() id: string = '';
   @Input() firstName: string = '';
   @Input() lastName: string = '';
-  @Input() email: string = '';
-  @Input() usersObject: any;
-  @Input() absenceDefinitions: any;
+  @Input() absenceDefinitionName = '';
+  @Input() partialTimeFrom: string = '';
+  @Input() partialTimeTo: string = '';
+  @Input() isPartial: boolean = false;
+  @Input() overrideHolidayAbsence: boolean = false;
+  @Input() comment: string = '';
 
   constructor(
     private authorizationService: AuthorizationService,
     private editUserService: EditUserService) {}
-
-  edit() {
-    const data = {
-      id: this.id,
-      absenceDefinitions: this.absenceDefinitions,
-    };
-    this.editUserService.emitEditEvent(data);
-  }
-
-  
 }

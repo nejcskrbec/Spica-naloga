@@ -31,6 +31,7 @@ body {
     --green1:#1e453e;
     --green2:#306844;
     --green3: #455b55;
+    --green4: #455b5584;
     --decline: #841919;
     --confirm: #3a8848;
     --white: #ffffff;
@@ -123,6 +124,21 @@ nav button {
 
 .card-body {
     padding: 16px;
+}
+
+.timeslot {
+    width: auto;
+    border-radius: 12px ;
+    border-color: var(--grey);
+    border-style: solid;
+    border-width: 1px;
+    background-color: var(--white);
+    vertical-align: middle;
+}
+
+.user-data {
+    width: 100% !important;
+    border-bottom: 1px solid var(--grey);
 }
 
 /* Pagination */

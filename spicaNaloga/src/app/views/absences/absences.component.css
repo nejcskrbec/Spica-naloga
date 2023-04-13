@@ -1,0 +1,15 @@
+.fa-magnifying-glass {
+    margin-right: 4px !important;
+}
+
+.search-button-absences {
+    border-radius: 8px !important;
+    width: 100% !important;
+    border-color: var(--green3) !important;
+    color: var(--green1) !important;
+}
+
+.search-button-absences:hover {
+    background-color: var(--green3) !important;
+    color: var(--white) !important;
+}
