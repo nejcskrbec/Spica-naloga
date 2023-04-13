@@ -5,7 +5,7 @@
 Za uporabo aplikacije morate imeti naloženo verzijo Angular CLI 15.2.4, ki pa zahteva Node.js verzijo najmanj 14.20.1, zato pred uporabo najprej posodobite Node.js, če uporabljate starejšo verzijo.
 
 #### Angular CLI
-Po tem, ko ste posodobili Node.js, lahko globalno namestite Angular CLI. Če imate Angular CLI že nameščen, lahko ta korak preskočite. To storite z ukazom v terminalu:
+Če imate Angular CLI že nameščen, lahko ta korak preskočite. Po tem, ko ste posodobili Node.js, lahko globalno namestite Angular CLI. To storite z ukazom v terminalu:
 
 `npm install -g @angular/cli@15.2.4`
 
