@@ -120,6 +120,17 @@ export class EditUserModalComponent {
     return (this.DateToISOString(new Date(Date.UTC(date.year, date.month - 1, date.day))));
   }
 
+  clear(): void {
+    this.commentForm.reset();
+    this.comment = '';
+    this.charCount = 0;
+    this.selectedOption = null;
+    this.modelTo = null;
+    this.modelFrom = null;  
+    this.isPartial = false;
+    this.overridesHolidayAbsence = false;
+  }
+
   submit(): void {
     if (this.modelFrom == undefined) {
       alert('Please enter a start date!')
@@ -148,7 +159,7 @@ export class EditUserModalComponent {
         })
       )
       .subscribe((response) => {
-        console.log(response);
+        this.clear();
         this.hideModal();
       });
     }

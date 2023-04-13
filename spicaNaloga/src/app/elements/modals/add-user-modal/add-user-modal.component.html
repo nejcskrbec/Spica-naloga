@@ -1,10 +1,10 @@
 <div class="modal fade" id="ModalFormAddUser" tabindex="-1"
-  aria-labelledby="ModalFormAddUserLabel" aria-hidden="true">
+  aria-labelledby="ModalFormAddUserLabel" data-bs-backdrop="static" aria-hidden="true" #ModalFormAddUser>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content card shadow-dark">
       <div class="modal-body p-0">
         <div class="myform">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#close" #closeButton></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#close" (click)="clear()" #closeButton></button>
           <h1 class="text-center">Add a new user</h1>
           <form>
             <div class="mb-5 mt-5">

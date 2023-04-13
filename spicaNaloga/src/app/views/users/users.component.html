@@ -1,4 +1,4 @@
-<div id="main-container" class="pt-5">
+<div id="main-container" class="users pt-5">
     <div class="container">
 
       <div class="row title-row">
@@ -16,8 +16,12 @@
             <div class="input-group-append">
               <button class="btn btn-outline-secondary search-button" type="button" (click)="searchUsers()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             </div>
+            <div>
+              <button class="btn reset-button" type="button" (click)="resetSearch()"><i class="fa-solid fa-arrows-rotate"></i></button>
+            </div>
           </div>
         </div>
+        
 
       </div>
       
@@ -51,7 +55,7 @@
       
     </div>
 
-    <!-- Authrization modal -->
+    <!-- Authorization modal -->
     <app-authorization-modal></app-authorization-modal>
 
     <!-- Add user modal -->

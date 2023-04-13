@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule, NgbDate, NgbCalendar, NgbDateParserFormatter, NgbDatepickerModule, NgbAlertModule, NgbDateStruct  } from '@ng-bootstrap/ng-bootstrap';
 import { AngularResizeEventModule } from 'angular-resize-event';
 import { CommonModule, JsonPipe } from '@angular/common';
@@ -51,7 +52,8 @@ import { IsoToDatePipe } from './pipes/iso-to-date.pipe';
     NgbAlertModule,
     JsonPipe,
     AngularResizeEventModule,
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [FrameworkComponent]

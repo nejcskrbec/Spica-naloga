@@ -156,7 +156,7 @@ nav button {
 .edit-button {
     border-radius: 8px;
     border-color: var(--grey) !important;
-    color: var(--green1) !important;
+    color: var(--green3) !important;
 }
 
 .edit-button:hover {
@@ -186,6 +186,19 @@ nav button {
 
 .search-button:hover {
     background-color: var(--green3) !important;
+    color: var(--white) !important;
+}
+
+.reset-button {
+    border-radius: 8px;
+    border-color: var(--grey) !important;
+    color: var(--green3) !important;
+    margin-left: 1rem !important;
+}
+
+.reset-button:hover {
+    background-color: var(--green3) !important;
+    border-color: var(--green3) !important;
     color: var(--white) !important;
 }
 

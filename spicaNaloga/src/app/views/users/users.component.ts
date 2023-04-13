@@ -1,9 +1,10 @@
 import { Component, Inject, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { HttpErrorResponse } from "@angular/common/http";
 import { throwError, catchError } from "rxjs";
 import { FormControl } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 import { AuthorizationService } from 'src/app/services/authorization.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -85,10 +86,12 @@ export class UsersComponent {
 
   // Resize
   resize(): void {
-    var mainContainer: any = document.querySelector("#main-container");
+    var mainContainer: any = document.querySelector(".users");
     var navbar: any = document.querySelector(".navbar");
-    mainContainer.style.setProperty("margin-top", navbar.getBoundingClientRect().height + "px", "important");
-    mainContainer.style.setProperty("height", window.innerHeight - navbar.getBoundingClientRect().height + "px", "important");
+    if (mainContainer != null && navbar != null) {
+      mainContainer.style.setProperty("margin-top", navbar.getBoundingClientRect().height + "px", "important");
+      mainContainer.style.setProperty("height", window.innerHeight - navbar.getBoundingClientRect().height + "px", "important");
+    }
   }
 
   checkAuthorization(): boolean | undefined {
@@ -98,7 +101,10 @@ export class UsersComponent {
         return true;
       }
     }      
-    this.authorizationModal.showModal();
+    setTimeout(() => {
+      this.authorizationModal.showModal();
+      return false;
+    }, 500);
     return false;
   }
   
@@ -133,7 +139,11 @@ export class UsersComponent {
     }
   }
 
-  
+  resetSearch() {
+    this.searchTermForm.reset();
+    this.searchTerm = '';
+    this.users = this.allUsers;
+  }
 
   searchUsers() {
     if (this.checkAuthorization()) {

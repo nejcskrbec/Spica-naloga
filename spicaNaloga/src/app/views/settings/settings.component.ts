@@ -7,6 +7,7 @@ import { throwError, catchError } from "rxjs";
 
 import { Credentials } from 'src/app/shared/classes/credentials';
 import { AuthorizationService } from 'src/app/services/authorization.service';
+import { NavbarSizeService } from 'src/app/services/navbar-size.service';
 
 @Component({
   selector: 'app-settings',
@@ -29,6 +30,7 @@ export class SettingsComponent {
     private readonly ngZone: NgZone,
     private readonly viewportRuler: ViewportRuler,
     private authorizationService: AuthorizationService,
+    private navbarSizeService: NavbarSizeService,
   ) {
     this.clientIdForm.valueChanges.subscribe((idValue) => {
       this.clientId = idValue;
@@ -36,14 +38,19 @@ export class SettingsComponent {
     this.clientSecretForm.valueChanges.subscribe((secretValue) => {
       this.clientSecret = secretValue;
     });
+    this.navbarSizeService.getResizeEvent().subscribe(event => {
+      this.resize();
+    });
   }
 
   // Resize
   resize(): void {
-    var mainContainer: any = document.querySelector("#main-container");
+    var mainContainer: any = document.querySelector(".settings");
     var navbar: any = document.querySelector(".navbar");
-    mainContainer.style.setProperty("margin-top", navbar.getBoundingClientRect().height + "px", "important");
-    mainContainer.style.setProperty("height", window.innerHeight - navbar.getBoundingClientRect().height + "px", "important");
+    if (mainContainer != null && navbar != null) {
+      mainContainer.style.setProperty("margin-top", navbar.getBoundingClientRect().height + "px", "important");
+      mainContainer.style.setProperty("height", window.innerHeight - navbar.getBoundingClientRect().height + "px", "important");
+    }
   }
 
   ngAfterViewInit(): void {

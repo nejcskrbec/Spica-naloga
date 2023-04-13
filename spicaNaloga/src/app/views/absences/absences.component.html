@@ -1,4 +1,4 @@
-<div id="main-container" class="pt-5">
+<div id="main-container" class="pt-5 absences">
     <div class="container">
 
       <div class="row title-row">
@@ -42,10 +42,18 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 d-flex text-right mb-5">
-                    <div class="input-group align-items-center">
-                        <button class="btn btn-outline-secondary search-button-absences" type="button" (click)="searchAbsences()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                  <div class="input-group align-items-center justify-content-end w-100">
+                    <button class="btn btn-outline-secondary search-button-absences flex-grow-1" type="button" (click)="searchAbsences()">
+                      <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                    <div class="d-flex">
+                      <button class="btn reset-button" type="button" (click)="resetSearch()">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                      </button>
                     </div>
+                  </div>
                 </div>
+                
             </div>
         </div>
 

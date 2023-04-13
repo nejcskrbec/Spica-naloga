@@ -9,6 +9,7 @@ import { JsonPipe } from '@angular/common';
 
 import { AuthorizationService } from 'src/app/services/authorization.service';
 import { UsersService } from 'src/app/services/users.service';
+import { NavbarSizeService } from 'src/app/services/navbar-size.service';
 
 import { UserCardComponent } from 'src/app/elements/cards/user-card/user-card.component';
 import { AuthorizationModalComponent } from 'src/app/elements/modals/authorization-modal/authorization-modal.component';
@@ -56,13 +57,17 @@ export class AbsencesComponent {
     private readonly ngZone: NgZone,
     private readonly viewportRuler: ViewportRuler,
     private authorizationService: AuthorizationService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private navbarSizeService: NavbarSizeService,
   ) {}
 
   ngAfterViewInit(): void {
     this.resize();
     this.fetchAbsences();
     this.fetchAbsenceDefinitions();
+    this.navbarSizeService.getResizeEvent().subscribe(event => {
+      this.resize();
+    });
   }
 
   private readonly viewportChange = this.viewportRuler
@@ -71,10 +76,12 @@ export class AbsencesComponent {
 
   // Resize
   resize(): void {
-    var mainContainer: any = document.querySelector("#main-container");
+    var mainContainer: any = document.querySelector(".absences");
     var navbar: any = document.querySelector(".navbar");
-    mainContainer.style.setProperty("margin-top", navbar.getBoundingClientRect().height + "px", "important");
-    mainContainer.style.setProperty("height", window.innerHeight - navbar.getBoundingClientRect().height + "px", "important"); 
+    if (mainContainer != null && navbar != null) {
+      mainContainer.style.setProperty("margin-top", navbar.getBoundingClientRect().height + "px", "important");
+      mainContainer.style.setProperty("height", window.innerHeight - navbar.getBoundingClientRect().height + "px", "important");
+    }
    }
 
   checkAuthorization(): boolean | undefined {
@@ -84,7 +91,10 @@ export class AbsencesComponent {
         return true;
       }
     }      
-    this.authorizationModal.showModal();
+    setTimeout(() => {
+      this.authorizationModal.showModal();
+      return false;
+    }, 500);
     return false;
   }
 
@@ -202,6 +212,12 @@ export class AbsencesComponent {
 
   NgbDateStructToISOString(date: NgbDateStruct): string {
     return (this.DateToISOString(new Date(Date.UTC(date.year, date.month - 1, date.day))));
+  }
+
+  resetSearch() {
+    this.modelFrom = null;
+    this.modelTo = null;
+    this.absences = this.allAbsences;
   }
 
   searchAbsences() {

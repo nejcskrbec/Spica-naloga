@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { HttpErrorResponse } from "@angular/common/http";
@@ -21,7 +21,6 @@ export class AddUserModalComponent {
   newUserEmailForm = new FormControl();
   newUserEmail: string = "";
 
-
   constructor(private router: Router,
     private usersService: UsersService) {
     this.newUserFirstNameForm.valueChanges.subscribe((nameValue) => {
@@ -34,12 +33,24 @@ export class AddUserModalComponent {
       this.newUserEmail = emailValue;
     });
   }
+
   showModal(): void {
     $('#ModalFormAddUser').modal('show');
   }
+
   hideModal(): void {
     $('#ModalFormAddUser').modal('hide');
   }
+
+  clear(): void {
+    this.newUserFirstNameForm.reset();
+    this.newUserFirstName = '';
+    this.newUserLastNameForm.reset();
+    this.newUserLastName = '';
+    this.newUserEmailForm.reset();
+    this.newUserEmail = '';
+  }
+
   submit(): void {
       const newUser = {
         FirstName: this.newUserFirstName,
@@ -55,7 +66,7 @@ export class AddUserModalComponent {
         })
       )
       .subscribe((response) => {
-        console.log(response);
+        this.clear();
         this.hideModal();
       });
   }
